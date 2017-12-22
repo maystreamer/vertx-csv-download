@@ -25,6 +25,7 @@ public class DatabaseHandler {
 	public void execute() {
 		consumer.handler(m -> {
 			try {
+				System.out.println(m.body());
 				sqlClient.getConnection(conn -> {
 					if (conn.failed()) {
 						conn.cause().printStackTrace();
