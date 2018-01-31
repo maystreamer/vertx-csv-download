@@ -1,10 +1,11 @@
 buildscript {
 	ext {
-		vertxVersion			=	"3.5.0"
-		logbackVersion		=	"1.2.3"		
-		slf4jVersion			=	"1.5.25"		
-		sourceJavaVersion	=	"1.8"
-		targetJavaVersion	=	"1.8"
+		vertxVersion				=	"3.5.0"
+		mysqlConnectorVersion	=	"6.0.6"
+		logbackVersion			=	"1.2.3"		
+		slf4jVersion				=	"1.5.25"		
+		sourceJavaVersion		=	"1.8"
+		targetJavaVersion		=	"1.8"
 	}
 }
 
@@ -16,7 +17,7 @@ plugins {
 }
 
 repositories {
-	mavenLocal()
+	//mavenLocal()
 	jcenter()
 	maven { url "https://plugins.gradle.org/m2/" }
 }
@@ -44,6 +45,9 @@ sourceSets {
 dependencies {
     compile "io.vertx:vertx-web:${vertxVersion}",
     			"io.vertx:vertx-mysql-postgresql-client:${vertxVersion}",
+    			"io.vertx:io.vertx.core:${vertxVersion}",
+    			"io.vertx:vertx-jdbc-client:${vertxVersion}",
+    			"mysql:mysql-connector-java:${mysqlConnectorVersion}",
 			"ch.qos.logback:logback-classic:${logbackVersion}",
 	    	    "ch.qos.logback:logback-core:${logbackVersion}",
 	    	    "org.slf4j:slf4j-api:${slf4jVersion}"

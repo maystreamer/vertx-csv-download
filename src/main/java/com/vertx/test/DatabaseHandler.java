@@ -13,7 +13,7 @@ public class DatabaseHandler {
 	private final SQLClient sqlClient;
 	private final MessageConsumer<String> consumer;
 
-	private static final String SELECT_USER_DETAILS = "SELECT `id`, `username`, `first_name`, `last_name`, `gender`, `password`, `status` FROM `user_details` limit 1, 10000";
+	private static final String SELECT_USER_DETAILS = "SELECT `id`, `username`, `first_name`, `last_name`, `gender`, `password`, `status` FROM `user_details` "; //limit 1, 20000
 
 	public static final String ADDRESS = "db_queue";
 
