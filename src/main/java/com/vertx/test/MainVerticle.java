@@ -1,5 +1,7 @@
 package com.vertx.test;
 
+import java.util.UUID;
+
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.CompositeFuture;
 import io.vertx.core.DeploymentOptions;

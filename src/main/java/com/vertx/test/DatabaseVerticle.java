@@ -11,7 +11,7 @@ public class DatabaseVerticle extends AbstractVerticle {
 	public void start(Future<Void> future) throws Exception {
 		super.start(future);
 		SQLClient client = JDBCClient.createShared(vertx, getMySQLConfigForJDBC());
-		DatabaseHandler dbHandler = new DatabaseHandler(client, vertx.eventBus().consumer(DatabaseHandler.ADDRESS));
+		DatabaseHandler dbHandler = new DatabaseHandler(client, vertx.eventBus().consumer(DatabaseHandler.ADDRESS), vertx);
 		dbHandler.execute();
 	}
 
