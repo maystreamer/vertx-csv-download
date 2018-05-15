@@ -14,7 +14,7 @@ public class DatabaseHandler {
 	private final MessageConsumer<String> consumer;
 	private Vertx vertx;
 
-	private static final String SELECT_USER_DETAILS = "SELECT `id`, `username`, `first_name`, `last_name`, `gender`, `password`, `status` FROM `user_details` "; // limit
+	private static final String SELECT_USER_DETAILS = "SELECT `id`, `first_name`, `last_name`, `gender`, `password`, `status` FROM `user_details` "; // limit
 																																									// 1,
 																																									// 20000
 

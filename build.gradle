@@ -1,75 +1,75 @@
 buildscript {
-	ext {
-		vertxVersion				=	"3.5.0"
-		mysqlConnectorVersion	=	"6.0.6"
-		logbackVersion			=	"1.2.3"		
-		slf4jVersion				=	"1.5.25"		
-		sourceJavaVersion		=	"1.8"
-		targetJavaVersion		=	"1.8"
-	}
+    ext {
+        vertxVersion = "3.5.1"
+        mysqlConnectorVersion = "6.0.6"
+        logbackVersion = "1.2.3"
+        slf4jVersion = "1.5.25"
+        sourceJavaVersion = "1.8"
+        targetJavaVersion = "1.8"
+    }
 }
 
 plugins {
-	id 'com.github.johnrengelman.shadow' version '2.0.1'
-	id 'java'
-	id 'eclipse'
-	id 'application'
+    id 'com.github.johnrengelman.shadow' version '2.0.1'
+    id 'java'
+    id 'eclipse'
+    id 'application'
 }
 
 repositories {
-	//mavenLocal()
-	jcenter()
-	maven { url "https://plugins.gradle.org/m2/" }
+    //mavenLocal()
+    jcenter()
+    maven { url "https://plugins.gradle.org/m2/" }
 }
 
 mainClassName = 'io.vertx.core.Launcher'
 
 shadowJar {
-	baseName = 'ingrain'
-	version = '0.0.1'
-	classifier = 'fat'
-	manifest {
-		attributes 'Main-Verticle': 'com.vertx.test.MainVerticle'
-	}
-	mergeServiceFiles {
-		include 'META-INF/services/io.vertx.core.spi.VerticleFactory'
-	}
+    baseName = 'ingrain'
+    version = '0.0.1'
+    classifier = 'fat'
+    manifest {
+        attributes 'Main-Verticle': 'com.vertx.test.MainVerticle'
+    }
+    mergeServiceFiles {
+        include 'META-INF/services/io.vertx.core.spi.VerticleFactory'
+    }
 }
 
 sourceSets {
-    generated{
+    generated {
         java.srcDir "${projectDir}/src/generated/java"
     }
 }
 
 dependencies {
     compile "io.vertx:vertx-web:${vertxVersion}",
-    			"io.vertx:vertx-mysql-postgresql-client:${vertxVersion}",
-    			"io.vertx:io.vertx.core:${vertxVersion}",
-    			"io.vertx:vertx-jdbc-client:${vertxVersion}",
-    			"mysql:mysql-connector-java:${mysqlConnectorVersion}",
-			"ch.qos.logback:logback-classic:${logbackVersion}",
-	    	    "ch.qos.logback:logback-core:${logbackVersion}",
-	    	    "org.slf4j:slf4j-api:${slf4jVersion}"
+            "io.vertx:vertx-mysql-postgresql-client:${vertxVersion}",
+            "io.vertx:io.vertx.core:${vertxVersion}",
+            "io.vertx:vertx-jdbc-client:${vertxVersion}",
+            "mysql:mysql-connector-java:${mysqlConnectorVersion}",
+            "ch.qos.logback:logback-classic:${logbackVersion}",
+            "ch.qos.logback:logback-core:${logbackVersion}",
+            "org.slf4j:slf4j-api:${slf4jVersion}"
 }
 
 compileJava {
-	targetCompatibility = sourceJavaVersion
-	sourceCompatibility = targetJavaVersion
+    targetCompatibility = sourceJavaVersion
+    sourceCompatibility = targetJavaVersion
 }
 
 sourceSets {
-  main {
-    java {
-      srcDirs += 'src/main/generated'
+    main {
+        java {
+            srcDirs += 'src/main/generated'
+        }
     }
-  }
 }
 
 task wrapper(type: Wrapper) {
-	gradleVersion = gradleVersion
+    gradleVersion = gradleVersion
 }
 
 run {
-	args = ['run', "com.vertx.test.MainVerticle", "--launcher-class=io.vertx.core.Launcher"]
+    args = ['run', "com.vertx.test.MainVerticle", "--launcher-class=io.vertx.core.Launcher"]
 }

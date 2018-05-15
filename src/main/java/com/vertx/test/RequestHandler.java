@@ -40,15 +40,18 @@ public class RequestHandler implements Handler<RoutingContext> {
 		});
 
 		Pump pump = Pump.pump(consumer, response);
-		pump.start();
 		this.vertx.eventBus().send(DatabaseHandler.ADDRESS, "hi, from RequestHandler", options, result -> {
-			response.end();
-			response.close();
+			if(result.succeeded()){
+				response.end();
+				pump.stop();
+			}
+			// response.close();
 		});
+		pump.start();
 	}
 
 	public String toString(final JsonArray data) {
 		return String.join(",", "" + data.getValue(0), "" + data.getValue(1), "" + data.getValue(2),
-				"" + data.getValue(3), "" + data.getValue(4), "" + data.getValue(5), "" + data.getValue(6), "\n");
+				"" + data.getValue(3), "" + data.getValue(4), "" + data.getValue(5), "" + data.getValue(6), "\r\n");
 	}
 }
